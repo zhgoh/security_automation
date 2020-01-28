@@ -1,0 +1,41 @@
+Threat Hunting - Security Automation
+
+Description:
+
+You are a member of a severely understaffed security team that performs security response duties for a stock-trading company, Happy Trading Pte Ltd.
+
+You have just been notified of a sudden performance issue in one of your core servers that runs a critical trading application.
+
+Investigation revealed that it is infected with a sophisticated piece of malware that has infected the server and requires an immediate temporary solution. Due to it being a critical application, the server cannot be rebooted for the time being.
+
+
+Here are the details of the malware:
+
+The Sleeper executable
+
+    The main malware component - The Sleeper, injects itself into the system processes.
+    Killing the Sleeper, makes your application crash and cause it to reboot immediately.
+    The Sleeper will spawn at least 3 other Annoying child processes.
+
+The Annoying executable
+
+    The Annoying executable always spawns with a random process name which appears to follow the pattern of an MD5 checksum.
+        e.g. 9af75c53a01b2e4277e17f78a3e41b25.exe (Windows) or 9af75c53a01b2e4277e17f78a3e41b25.py (*nix)
+    For each Annoying process it connect back to a different C&C Server over tcp/4444.
+    Killing each Annoying process will cause the Sleeper to re-spawn a new Annoying process after a 5-minute period, with a new random process name, following the MD5 pattern.
+        e.g. bb07fe9441716a8e520cb1d7f0ce3953.exe (Windows) or bb07fe9441716a8e520cb1d7f0ce3953.py (*nix)
+
+
+
+Your Task
+
+You as the security response engineer, are to write a program of any language of your choice and the option of doing it on Windows or *nix machines, making assumption that will do the following conditions:
+
+    Search for the presence of the Annoying executable processes at regular intervals.
+    Find the C&C Server IP address that each Annoying process is connecting to.
+    Kill the Annoying processes.
+    Sinkhole the C2 by editing the hosts file, pointing the IP to localhost
+        e.g. 11.22.33.44    localhost
+
+
+Category : countercept 
